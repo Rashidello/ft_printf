@@ -10,12 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stuff.h"
+#include "ft_printf.h"
 
-
-ssize_t ft_putnbr(int nbr)
+ssize_t	ft_putnbr(int nbr)
 {
-	int size;
+	int	size;
 
 	size = 0;
 	if (nbr == -2147483648)
@@ -28,15 +27,16 @@ ssize_t ft_putnbr(int nbr)
 	if (nbr >= 10)
 	{
 		size += (ft_putnbr (nbr / 10));
-		size += (ft_putchar((nbr % 10) + '0')); 
+		size += (ft_putchar((nbr % 10) + '0'));
 	}
 	else if (nbr >= 0 && nbr <= 9)
 		size += (ft_putchar(nbr + '0'));
 	return (size);
 }
-ssize_t ft_putunbr(unsigned int nbr)
+
+ssize_t	ft_putunbr(unsigned int nbr)
 {
-	int size;
+	int	size;
 
 	size = 0;
 	if (nbr >= 10)
@@ -44,16 +44,17 @@ ssize_t ft_putunbr(unsigned int nbr)
 		size += ft_putunbr(nbr / 10);
 		size += ft_putchar((nbr % 10) + '0');
 	}
-	else if(nbr >= 0 && nbr <= 9)
+	else if (nbr <= 9)
 		size += (ft_putchar(nbr + '0'));
 	return (size);
 }
-ssize_t ft_hex(unsigned long long nbr, char cors)
+
+ssize_t	ft_hex(unsigned long long nbr, char cors)
 {
-	char *hx;
-	ssize_t rec;
-	char obo;
-	ssize_t total;
+	char	*hx;
+	ssize_t	rec;
+	char	obo;
+	ssize_t	total;
 
 	total = 0;
 	if (cors == 'X')
@@ -64,7 +65,7 @@ ssize_t ft_hex(unsigned long long nbr, char cors)
 	{
 		rec = ft_hex(nbr / 16, cors);
 		if (rec == -1)
-			return(rec);
+			return (rec);
 		total += rec;
 	}
 	obo = hx[nbr % 16];
@@ -72,23 +73,23 @@ ssize_t ft_hex(unsigned long long nbr, char cors)
 	if (rec == -1)
 		return (-1);
 	total += rec;
-	return(total);
+	return (total);
 }
 
-ssize_t ft_ptr(unsigned long long nbr)
+ssize_t	ft_ptr(unsigned long long nbr)
 {
-	ssize_t len;
-	ssize_t hex;
+	ssize_t	len;
+	ssize_t	hex;
+
 	if (nbr == 0)
 	{
 		return (write(1, "(nil)", 5));
-	}	
+	}
 	len = write(1, "0x", 2);
 	if (len == -1)
 		return (-1);
 	hex = ft_hex(nbr, 'x');
 	if (hex == -1)
 		return (-1);
-	return(len + hex);
-	
+	return (len + hex);
 }

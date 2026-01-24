@@ -10,11 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stuff.h"
+#include "ft_printf.h"
 
-ssize_t ag(va_list args, char print_out)
+ssize_t	ag(va_list args, char print_out)
 {
-	int output;
+	int	output;
+
 	if (print_out == 'c')
 		output = ft_putchar(va_arg(args, int));
 	if (print_out == 's')
@@ -24,33 +25,34 @@ ssize_t ag(va_list args, char print_out)
 	if (print_out == 'p')
 		output = ft_ptr(va_arg(args, unsigned long long));
 	if (print_out == '%')
-		output = ft_per(va_arg(args, int));
+		ft_putchar('%');
 	if (print_out == 'i' || print_out == 'd')
 		output = ft_putnbr(va_arg(args, int));
 	if (print_out == 'u')
 		output = ft_putunbr(va_arg(args, unsigned int));
 	return (output);
 }
-int ft_printf(const char *print_out, ...)
+
+intft_printf(const char *print_out, ...)
 {
-	int i;
-	int len;
-	va_list args;
+	int		i;
+	int		len;
+	va_list	args;
 
 	len = 0;
 	i = 0;
-	va_start(args, print_out);
+	va_start (args, print_out);
 	while (print_out[i])
 	{
 		if (print_out[i] == '%')
 		{
 			i++;
-			len += ag(args,print_out[i]);
+			len += ag(args, print_out[i]);
 		}
 		else
 			len += ft_putchar(print_out[i]);
 		i++;
 	}
-	va_end(args);
-	return(len);
+	va_end (args);
+	return (len);
 }
