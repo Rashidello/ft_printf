@@ -33,7 +33,7 @@ ssize_t	ag(va_list args, char print_out)
 	return (output);
 }
 
-intft_printf(const char *print_out, ...)
+int	ft_printf(const char *print_out, ...)
 {
 	int		i;
 	int		len;

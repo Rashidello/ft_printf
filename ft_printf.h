@@ -13,9 +13,9 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-#include <unistd.h>
-#include <stdarg.h>
-#include <stdio.h>
+# include <unistd.h>
+# include <stdarg.h>
+# include <stdio.h>
 
 int		ft_printf(const char *print_out, ...);
 ssize_t	ft_putnbr(int nbr);

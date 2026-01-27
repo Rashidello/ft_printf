@@ -1,5 +1,5 @@
-# ft_printf
-This project has been created as part of the 42 curriculum by rarayano
+
+*This project has been created as part of the 42 curriculum by rarayano*
 
 ## Description:
 The objective of ft_printf is to recreate a printf function
@@ -28,5 +28,6 @@ make re
 ```
 
 ## Resources:
-peers, [Youtube video](https://www.youtube.com/watch?v=oDC208zvsdg) 
+Peers gave me a hint to what should I study and they helped me out when I had syntax issue  
+[Youtube video](https://www.youtube.com/watch?v=oDC208zvsdg)  idea of how to use variadic functions
 
