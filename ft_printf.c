@@ -38,8 +38,8 @@ int	ft_printf(const char *print_out, ...)
 {
 	int		i;
 	int		len;
-	va_list	args;
 	int		proverka;
+	va_list	args;
 
 	proverka = 0;
 	len = 0;
@@ -50,13 +50,18 @@ int	ft_printf(const char *print_out, ...)
 		if (print_out[i] == '%')
 		{
 			i++;
-			proverka += ag(args, print_out[i]);
+			proverka = ag(args, print_out[i]);
 			if (proverka == -1)
 				return (-1);
 			len += proverka;
 		}
 		else
-			len += ft_putchar(print_out[i]);
+		{
+			proverka = ft_putchar(print_out[i]);
+			if (proverka == -1)
+				return (-1);
+			len += proverka;
+		}
 		i++;
 	}
 	va_end (args);
