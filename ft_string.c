@@ -19,14 +19,17 @@ ssize_t	ft_putchar(char c)
 
 ssize_t	ft_putstr(char *str)
 {
-	int	i;
+	int		i;
+	ssize_t	ret;
 
 	i = 0;
 	if (!str)
 		return (ft_putstr("(null)"));
 	while (str[i] != '\0')
 	{
-		write(1, &str[i], 1);
+		ret = write(1, &str[i], 1);
+		if (ret == -1)
+			return (-1);
 		i++;
 	}
 	return (i);
