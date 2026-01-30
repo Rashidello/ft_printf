@@ -7,11 +7,11 @@ The objective of ft_printf is to recreate a printf function
 ## Instructions:
  to compile the project use command
  ```bash
- Make
+ make
  ```
  to run the program use command 
  ```bash
- main.c file_name.a
+ cc main.c file_name.a
  ```
  ### useful commands:
  deletes compiled files:
@@ -29,5 +29,6 @@ make re
 
 ## Resources:
 Peers gave me a hint to what should I study and they helped me out when I had syntax issue  
-[Youtube video](https://www.youtube.com/watch?v=oDC208zvsdg)  idea of how to use variadic functions
+[Youtube video](https://www.youtube.com/watch?v=oDC208zvsdg) idea of how to use variadic functions
+AI in deeper explanation of variadic functions
 

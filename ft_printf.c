@@ -16,19 +16,20 @@ ssize_t	ag(va_list args, char print_out)
 {
 	int	output;
 
+	output = 0;
 	if (print_out == 'c')
 		output = ft_putchar(va_arg(args, int));
-	if (print_out == 's')
+	else if (print_out == 's')
 		output = ft_putstr(va_arg(args, char *));
-	if (print_out == 'x' || print_out == 'X')
+	else if (print_out == 'x' || print_out == 'X')
 		output = ft_hex(va_arg(args, unsigned int), print_out);
-	if (print_out == 'p')
+	else if (print_out == 'p')
 		output = ft_ptr(va_arg(args, unsigned long long));
-	if (print_out == '%')
-		ft_putchar('%');
-	if (print_out == 'i' || print_out == 'd')
+	else if (print_out == '%')
+		output = ft_putchar('%');
+	else if (print_out == 'i' || print_out == 'd')
 		output = ft_putnbr(va_arg(args, int));
-	if (print_out == 'u')
+	else if (print_out == 'u')
 		output = ft_putunbr(va_arg(args, unsigned int));
 	return (output);
 }
@@ -38,7 +39,9 @@ int	ft_printf(const char *print_out, ...)
 	int		i;
 	int		len;
 	va_list	args;
+	int		proverka;
 
+	proverka = 0;
 	len = 0;
 	i = 0;
 	va_start (args, print_out);
@@ -47,7 +50,10 @@ int	ft_printf(const char *print_out, ...)
 		if (print_out[i] == '%')
 		{
 			i++;
-			len += ag(args, print_out[i]);
+			proverka += ag(args, print_out[i]);
+			if (proverka == -1)
+				return (-1);
+			len += proverka;
 		}
 		else
 			len += ft_putchar(print_out[i]);
