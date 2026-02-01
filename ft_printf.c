@@ -12,31 +12,23 @@
 
 #include "ft_printf.h"
 
-ssize_t	ag(va_list args, char print_out)
+ssize_t	ag(va_list *args, char print_out)
 {
-	int	output;
-
 	if (print_out == 'c')
-		return (ft_putchar(va_arg(args, int)));
+		return (ft_putchar(va_arg(*args, int)));
 	if (print_out == 's')
-		return (ft_putstr(va_arg(args, char *)));
+		return (ft_putstr(va_arg(*args, char *)));
 	if (print_out == 'x' || print_out == 'X')
-		return (ft_hex(va_arg(args, unsigned int), print_out));
+		return (ft_hex(va_arg(*args, unsigned int), print_out));
 	if (print_out == 'p')
-		return (ft_ptr(va_arg(args, unsigned long long)));
+		return (ft_ptr(va_arg(*args, unsigned long long)));
 	if (print_out == 'i' || print_out == 'd')
-		return (ft_putnbr(va_arg(args, int)));
+		return (ft_putnbr(va_arg(*args, int)));
 	if (print_out == 'u')
-		return (ft_putunbr(va_arg(args, unsigned int)));
+		return (ft_putunbr(va_arg(*args, unsigned int)));
 	if (print_out == '%')
 		return (ft_putchar('%'));
-	if ((print_out >= 'a' && print_out <= 'z')
-		|| (print_out >= 'A' && print_out <= 'Z'))
-		return (ft_putchar('%'));
-	output = ft_putchar('%');
-	if (output == -1)
-		return (-1);
-	return (output + ft_putchar(print_out));
+	return (-1);
 }
 
 int	ft_printf(const char *print_out, ...)
@@ -56,13 +48,13 @@ int	ft_printf(const char *print_out, ...)
 			if (print_out[i + 1] == '\0')
 				return (va_end(args), -1);
 			i++;
-			proverka = ag(args, print_out[i]);
+			proverka = ag(&args, print_out[i]);
 		}
 		else
 			proverka = ft_putchar(print_out[i]);
 		if (proverka == -1)
-				return (va_end(args), -1);
-			len += proverka;
+			return (va_end(args), -1);
+		len += proverka;
 		i++;
 	}
 	return (va_end(args), len);

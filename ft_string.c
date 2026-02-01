@@ -20,7 +20,7 @@ ssize_t	ft_putchar(char c)
 ssize_t	ft_putstr(char *str)
 {
 	int	i;
-	int proverka;
+	int	proverka;
 
 	proverka = 0;
 	i = 0;
